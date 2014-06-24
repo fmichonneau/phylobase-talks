@@ -1,0 +1,244 @@
+% `phylobase`
+% François Michonneau - @FrancoisInvert
+% iEvoBio -  June 24<sup>th</sup>, 2014
+
+```{r, include=FALSE}
+options(markdown.HTML.header = "extra.css")
+```
+
+# Contributors
+
+- Ben Bolker
+- Marguerite Butler
+- Peter Cowan
+- Damien de Vienne
+- Dirk Eddelbuettel
+- Mark Holder
+- Thibaut Jombart
+- Steve Kembel
+- David Orme
+- Brian O'Meara
+- Emmanuel Paradis
+- Jim Regetz
+- Derrick Zwickl
+- **YOU?**
+
+-------
+
+## What `phylobase` is not
+
+- a data analysis package
+
+-------
+
+## What `phylobase` provides
+
+- classes + methods for object manipulation
+- object = phylogenetic tree (+ data)
+- robust
+    - over 200 unit tests
+	- S4 class
+	
+-------
+
+## Why `phylobase`?
+
+- `phylo4` as the unifying standard for PCM in `R`
+
+- Goals
+    - common data structure
+	- common base functions
+	- associate tree and comparative data
+	- easy to manipulate
+
+-------
+
+## Why `phylobase`?
+
+- For users
+    - pass data from one package to another
+    - keep data and tree synchronized
+   
+- For developers
+    - focus on method development
+
+-------
+
+## The `phylo4` class
+
+```{r, echo=1:2, results='hide', message=FALSE, prompt=TRUE}
+library(phylobase)
+data(geospiza)
+data(geospiza_raw)
+geosp <- phylo4(geospiza_raw$tree)
+```
+
+```{r,echo=FALSE}
+geosp
+```
+
+--------
+
+## The `phylo4` class
+
+### Plotting
+
+```{r, prompt=TRUE, caption='phylobubble plot'}
+plot(geospiza)
+```
+
+--------
+
+## The `phylo4` class
+
+### Basic information about the tree
+
+```{r, prompt=TRUE}
+nTips(geospiza)
+tipLabels(geospiza)
+nodeLabels(geospiza)
+isUltrametric(geospiza)
+```
+
+------
+
+## The `phylo4` class
+
+### Tree-walking
+
+```{r, prompt=TRUE}
+descendants(geospiza, 21)
+ancestors(geospiza, "pauper")
+```
+
+-------
+
+## The `phylo4d` class
+
+```{r, include=FALSE}
+geoTr <- geospiza_raw$tree
+geoData <- geospiza_raw$data
+```
+
+### Put together tree and data
+
+```{r, prompt=TRUE}
+geo <- phylo4d(geoTr, geoData)
+geo <- phylo4d(geoTr, geoData, missing="OK")
+head(geo, n=10)
+```
+
+--------
+
+## Other functions
+
+- flexible subsetting functions
+
+
+--------
+
+## Importing data
+
+### from NEXUS files (using NCL)
+
+```
+#NEXUS
+
+BEGIN TAXA;
+	DIMENSIONS NTAX=18;
+	TAXLABELS
+		Myrmecocystuscfnavajo Myrmecocystuscreightoni Myrmecocystusdepilis Myrmecocystuskathjuli Myrmecocystuskennedyi Myrmecocystusmendax Myrmecocystusmexicanus Myrmecocystusmimicus Myrmecocystusnavajo Myrmecocystusnequazcatl Myrmecocystusplacodops Myrmecocystusromainei Myrmecocystussemirufus Myrmecocystussnellingi Myrmecocystustenuinodis Myrmecocystustestaceus Myrmecocystuswheeleri Myrmecocystusyuma 
+	;
+END;
+
+BEGIN CHARACTERS;
+	TITLE  Foraging;
+	DIMENSIONS  NCHAR=2;
+	FORMAT DATATYPE = STANDARD GAP = - MISSING = ? SYMBOLS = "  0 1 2";
+	CHARSTATELABELS 
+		1 time /  diurnal crepuscular nocturnal, 2 subgenus /  Endiodioctes Eremnocystus Myrmecocystus ; 
+	MATRIX
+	Myrmecocystuscfnavajo    22
+	Myrmecocystuscreightoni  11
+	Myrmecocystusdepilis     00
+.......
+;
+END;
+
+BEGIN TREES;
+	TRANSLATE
+		1 Myrmecocystuscfnavajo,
+		2 Myrmecocystuscreightoni,
+		3 Myrmecocystusdepilis,
+		4 Myrmecocystuskathjuli,
+		5 Myrmecocystuskennedyi,
+		6 Myrmecocystusmendax,
+		7 Myrmecocystusmexicanus,
+		8 Myrmecocystusmimicus,
+		9 Myrmecocystusnavajo,
+		10 Myrmecocystusnequazcatl,
+		11 Myrmecocystusplacodops,
+		12 Myrmecocystusromainei,
+		13 Myrmecocystussemirufus,
+		14 Myrmecocystussnellingi,
+		15 Myrmecocystustenuinodis,
+		16 Myrmecocystustestaceus,
+		17 Myrmecocystuswheeleri,
+		18 Myrmecocystusyuma;
+	TREE bestML = (((((((((13:1.724765,11:1.724765):2.926053,6:4.650818):0.689044,(4:1.08387,17:1.08387):4.255993):0.198842,((8:2.708942,3:2.708942):2.027251,((12:2.193845,10:2.193845):2.257581,18:4.451425):0.284767):0.802512):0.506099,5:6.044804):4.524387,2:10.569191):0.836689,(14:2.770378,15:2.770378):8.635503):0.89482,16:12.300701):1.699299,(7:5.724923,(1:2.869547,9:2.869547):2.855375):8.275077);
+END;
+```
+
+------
+
+## Importing data
+
+### from NEXUS files (using NCL)
+
+```{r, prompt=TRUE}
+myrme <- readNexus(file="treeWithDiscreteData.nex")
+head(myrme, n=10)
+```
+
+--------
+
+## Importing data
+
+### from NeXML files (using RNeXML)
+
+```{r, eval=FALSE, prompt=TRUE}
+library(RNeXML)
+nxml <- nexml_read("http://purl.org/phylo/treebase/phylows/study/TB2:S15218?format=nexml")
+```
+
+```{r, include=FALSE}
+library(RNeXML)
+nxml <- nexml_read("phyrella.xml")
+```
+
+```{r, prompt=TRUE}
+phyrella <- phylo4(nxml)
+```
+
+```{r, echo=FALSE}
+head(phyrella, n=5)
+```
+
+```{r, prompt=TRUE, caption=FALSE}
+plot(phyrella)
+```
+
+---------
+
+## Future
+
+- Support for `multiPhylo4` and `multiPhylo4d` classes
+- Better/faster underlying data structure for the trees
+
+---------
+
+## More information
+
+- [http://github.com/fmichonneau/phylobase](http://github.com/fmichonneau/phylobase)
+- [http://cran.r-project.org/package=phylobase](http://cran.r-project.org/package=phylobase)
+- Vignette
