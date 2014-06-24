@@ -245,6 +245,12 @@
 
 ## Importing data
 
+### from NEWICK
+
+--------
+
+## Importing data
+
 ### from NEXUS files (using NCL)
 
 ```

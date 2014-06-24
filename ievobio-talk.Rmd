@@ -139,6 +139,12 @@ head(geo, n=10)
 
 ## Importing data
 
+### from NEWICK
+
+--------
+
+## Importing data
+
 ### from NEXUS files (using NCL)
 
 ```

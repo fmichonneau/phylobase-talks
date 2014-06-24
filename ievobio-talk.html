@@ -238,6 +238,11 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <section class="slide level1">
 
 <h2 id="importing-data">Importing data</h2>
+<h3 id="from-newick">from NEWICK</h3>
+</section>
+<section class="slide level1">
+
+<h2 id="importing-data-1">Importing data</h2>
 <h3 id="from-nexus-files-using-ncl">from NEXUS files (using NCL)</h3>
 <pre><code>#NEXUS
 
@@ -287,7 +292,7 @@ END;</code></pre>
 </section>
 <section class="slide level1">
 
-<h2 id="importing-data-1">Importing data</h2>
+<h2 id="importing-data-2">Importing data</h2>
 <h3 id="from-nexus-files-using-ncl-1">from NEXUS files (using NCL)</h3>
 <pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span>myrme &lt;-<span class="st"> </span><span class="kw">readNexus</span>(<span class="dt">file=</span><span class="st">&quot;treeWithDiscreteData.nex&quot;</span>)
 &gt;<span class="st"> </span><span class="kw">head</span>(myrme, <span class="dt">n=</span><span class="dv">10</span>)</code></pre>
@@ -316,7 +321,7 @@ END;</code></pre>
 </section>
 <section class="slide level1">
 
-<h2 id="importing-data-2">Importing data</h2>
+<h2 id="importing-data-3">Importing data</h2>
 <h3 id="from-nexml-files-using-rnexml">from NeXML files (using RNeXML)</h3>
 <pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">library</span>(RNeXML)
 &gt;<span class="st"> </span>nxml &lt;-<span class="st"> </span><span class="kw">nexml_read</span>(<span class="st">&quot;http://purl.org/phylo/treebase/phylows/study/TB2:S15218?format=nexml&quot;</span>)</code></pre>
