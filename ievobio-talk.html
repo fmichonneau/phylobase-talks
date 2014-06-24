@@ -233,7 +233,15 @@ code > span.er { color: #ff0000; font-weight: bold; }
 <h2 id="other-functions">Other functions</h2>
 <ul>
 <li>flexible subsetting functions</li>
+<li>options to control object validity (useful for developers)</li>
 </ul>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">phylobase.options</span>(<span class="st">&quot;allow.duplicated.labels&quot;</span>)</code></pre>
+<pre><code>## $allow.duplicated.labels
+## [1] &quot;warn&quot;</code></pre>
+<pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">phylobase.options</span>(<span class="st">&quot;allow.duplicated.labels&quot;</span> =<span class="st">  &quot;ok&quot;</span>)
+&gt;<span class="st"> </span><span class="kw">phylobase.options</span>(<span class="st">&quot;allow.duplicated.labels&quot;</span>)</code></pre>
+<pre><code>## $allow.duplicated.labels
+## [1] &quot;ok&quot;</code></pre>
 </section>
 <section class="slide level1">
 
@@ -340,7 +348,7 @@ END;</code></pre>
 ## 5       tip</code></pre>
 <pre class="sourceCode r"><code class="sourceCode r">&gt;<span class="st"> </span><span class="kw">plot</span>(phyrella)</code></pre>
 <figure>
-<img src="figure/unnamed-chunk-14.png" alt="plot of chunk unnamed-chunk-14" /><figcaption>plot of chunk unnamed-chunk-14</figcaption>
+<img src="figure/unnamed-chunk-15.png" alt="plot of chunk unnamed-chunk-15" /><figcaption>plot of chunk unnamed-chunk-15</figcaption>
 </figure>
 </section>
 <section class="slide level1">

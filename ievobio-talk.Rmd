@@ -133,7 +133,13 @@ head(geo, n=10)
 ## Other functions
 
 - flexible subsetting functions
+- options to control object validity (useful for developers)
 
+```{r, prompt=TRUE}
+phylobase.options("allow.duplicated.labels")
+phylobase.options("allow.duplicated.labels" =  "ok")
+phylobase.options("allow.duplicated.labels")
+```
 
 --------
 

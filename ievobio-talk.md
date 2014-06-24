@@ -239,7 +239,27 @@
 ## Other functions
 
 - flexible subsetting functions
+- options to control object validity (useful for developers)
 
+
+```r
+> phylobase.options("allow.duplicated.labels")
+```
+
+```
+## $allow.duplicated.labels
+## [1] "warn"
+```
+
+```r
+> phylobase.options("allow.duplicated.labels" =  "ok")
+> phylobase.options("allow.duplicated.labels")
+```
+
+```
+## $allow.duplicated.labels
+## [1] "ok"
+```
 
 --------
 
@@ -378,7 +398,7 @@ END;
 > plot(phyrella)
 ```
 
-![plot of chunk unnamed-chunk-14](figure/unnamed-chunk-14.png) 
+![plot of chunk unnamed-chunk-15](figure/unnamed-chunk-15.png) 
 
 ---------
 
