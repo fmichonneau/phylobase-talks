@@ -387,4 +387,4 @@ END;
 
 - [http://github.com/fmichonneau/phylobase](http://github.com/fmichonneau/phylobase)
 - [http://cran.r-project.org/package=phylobase](http://cran.r-project.org/package=phylobase)
-- Vignette
+- Vignette for more examples
