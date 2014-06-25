@@ -9,3 +9,7 @@ The version presented at iEvoBio is archived on slideshare:
 
 If you have Make, R (with knitr) you should be able to simply clone this
 repository and type: `make`
+
+# Licence
+
+CC0 (for the slides)
