@@ -5,9 +5,20 @@ The slideshow can be seen at
 The version presented at iEvoBio is archived on slideshare:
 [http://www.slideshare.net/francoismichonneau/20140624ievobio-phylobase](http://www.slideshare.net/francoismichonneau/20140624ievobio-phylobase)
 
-# How to build the slideshow?
+This repository contains the source code used to generate the slideshow
+(ievobio-talk.Rmd). If you just want to see the end-product, see the links
+above.
 
-If you have Make, R (with knitr) you should be able to simply clone this
+# How to build the slideshow yourself?
+
+You need:
+- GNU Make
+- [http://www.r-project.org](R)
+    - [http://cran.r-project.org/package=knitr](knitr)
+- [http://johnmacfarlane.net/pandoc](pandoc) (>= 1.12.4.2) (this is a more
+  recent version than the one shipped with Ubuntu 14.04)
+
+If you have these dependencies, you should be able to simply clone this
 repository and type: `make`
 
 # Licence
